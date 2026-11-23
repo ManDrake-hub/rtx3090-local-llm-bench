@@ -1,0 +1,44 @@
+# 2026-11-21 13:30:32 old=cd959bae9 new=80325823d
+# 2026-11-21 13:30:50 prod-old up vram=22764MiB
+prod-old	codegen	depth=40	pp=119	tg=81.5	n=1200 draft_acc=851/1042 (82%)
+prod-old	chat	depth=46	pp=193	tg=68.0	n=1200 draft_acc=776/1268 (61%)
+prod-old	edit	depth=2397	pp=1117	tg=114.0	n=1200 draft_acc=1034/1357 (76%)
+prod-old-d32k	codegen	depth=30609	pp=1100	tg=70.5	n=1200 draft_acc=877/1195 (73%)
+# 2026-11-21 13:32:36 mtp3-new up vram=22806MiB
+mtp3-new	codegen	depth=40	pp=156	tg=91.9	n=1200 draft_acc=856/1027 (83%)
+mtp3-new	chat	depth=46	pp=226	tg=74.9	n=1200 draft_acc=777/1264 (61%)
+mtp3-new	edit	depth=2397	pp=1197	tg=131.4	n=1200 draft_acc=1054/1335 (79%)
+mtp3-new-d32k	codegen	depth=30609	pp=1147	tg=77.1	n=1200 draft_acc=865/1117 (77%)
+# 2026-11-21 13:34:14 mtp2-new up vram=22656MiB
+mtp2-new	codegen	depth=40	pp=142	tg=81.0	n=1200 draft_acc=770/857 (90%)
+mtp2-new	chat	depth=46	pp=222	tg=69.4	n=1200 draft_acc=707/982 (72%)
+mtp2-new	edit	depth=2397	pp=1191	tg=107.4	n=1200 draft_acc=984/1347 (73%)
+mtp2-new-d32k	codegen	depth=30609	pp=1143	tg=64.2	n=1200 draft_acc=775/1142 (68%)
+# 2026-11-21 13:36:00 mtp4-new up vram=22956MiB
+mtp4-new	codegen	depth=40	pp=143	tg=101.9	n=1200 draft_acc=912/1144 (80%)
+mtp4-new	chat	depth=46	pp=223	tg=73.4	n=1200 draft_acc=800/1589 (50%)
+mtp4-new	edit	depth=2397	pp=1199	tg=129.1	n=1200 draft_acc=1057/1410 (75%)
+mtp4-new-d32k	codegen	depth=30609	pp=1136	tg=79.7	n=1200 draft_acc=914/1361 (67%)
+# 2026-11-21 13:37:37 mtp5-new up vram=23104MiB
+mtp5-new	codegen	depth=40	pp=142	tg=102.0	n=1200 draft_acc=930/1344 (69%)
+mtp5-new	chat	depth=46	pp=232	tg=78.7	n=1200 draft_acc=849/1748 (49%)
+mtp5-new	edit	depth=2397	pp=1226	tg=127.3	n=1200 draft_acc=1070/1522 (70%)
+mtp5-new-d32k	codegen	depth=30609	pp=1131	tg=78.2	n=1200 draft_acc=916/1552 (59%)
+# 2026-11-21 13:39:14 dflash7 up vram=23998MiB
+dflash7	codegen	depth=40	pp=134	tg=130.6	n=1200 draft_acc=972/1580 (62%)
+dflash7	chat	depth=46	pp=222	tg=91.7	n=1200 draft_acc=872/2281 (38%)
+dflash7	edit	depth=2397	pp=1023	tg=120.8	n=1200 draft_acc=957/1690 (57%)
+dflash7-d32k	codegen	depth=30609	pp=1029	tg=129.3	n=1200 draft_acc=1004/1363 (74%)
+# 2026-11-21 13:40:45 dflash7-ngram up vram=23998MiB
+dflash7-ngram	codegen	depth=40	pp=135	tg=143.6	n=1200 draft_acc=992/1442 (69%)
+dflash7-ngram	chat	depth=46	pp=225	tg=91.8	n=1200 draft_acc=872/2276 (38%)
+dflash7-ngram	edit	depth=2397	pp=1040	tg=131.7	n=1200 draft_acc=1070/1723 (62%)
+dflash7-ngram-d32k	codegen	depth=30609	pp=1036	tg=113.7	n=1200 draft_acc=989/1567 (63%)
+# 2026-11-21 13:42:14 dflash15 FAIL: 0.10.935.855 E srv    load_model: failed to load draft model, '/home/user/models/dflash/Qwen3.8-27B-DFlash2-Q4_K_M.gguf' 0.10.936.806 E srv  server_run_i: exiting due to model loading error 
+# 2026-11-21 13:42:26 mtp-dflash FAIL: 0.11.683.778 E srv    load_model: failed to create MTP context 0.11.684.955 E srv  server_run_i: exiting due to model loading error 
+# 2026-11-21 13:42:38 maxctx dflash 159744 fail
+# 2026-11-21 13:42:50 maxctx dflash 147456 fail
+# 2026-11-21 13:43:03 maxctx dflash 139264 fail
+# 2026-11-21 13:43:18 maxctx dflash 131072 OK
+# 2026-11-21 13:43:18 DONE
+# 2026-11-21 13:43:36 llama-qwen restored (active)

@@ -1,0 +1,30 @@
+# 2026-11-21 12:35:57 build PR #32218 1989f96d8 + download drafter
+# 2026-11-21 12:39:47 ngram up vram=22150MiB
+ngram	codegen	depth=46	pp=244	tg=57.9	n=1200
+ngram	chat	depth=51	pp=325	tg=57.8	n=1200
+ngram	edit	depth=3118	pp=734	tg=55.9	n=1200
+ngram-d32k	codegen	depth=39914	pp=460	tg=46.2	n=1200 draft_acc=4/128 (3%)
+ngram-d100k	codegen	depth=124605	pp=200	tg=31.7	n=1200 draft_acc=55/384 (14%)
+# 2026-11-21 12:50:45 dspark3 up vram=23294MiB
+dspark3	codegen	depth=46	pp=134	tg=63.8	n=1200 draft_acc=767/1292 (59%)
+dspark3	chat	depth=51	pp=283	tg=49.9	n=1200 draft_acc=647/1651 (39%)
+dspark3	edit	depth=3118	pp=662	tg=65.7	n=1200 draft_acc=802/1190 (67%)
+dspark3-d32k	codegen	depth=39914	pp=433	tg=49.1	n=1200 draft_acc=794/1215 (65%)
+dspark3-d100k	codegen	depth=124605	pp=195	tg=29.9	n=1200 draft_acc=772/1279 (60%)
+# 2026-11-21 13:02:00 dspark5 up vram=23300MiB
+dspark5	codegen	depth=46	pp=141	tg=62.4	n=1200 draft_acc=822/1875 (44%)
+dspark5	chat	depth=51	pp=284	tg=45.0	n=1200 draft_acc=675/2616 (26%)
+dspark5	edit	depth=3118	pp=664	tg=79.6	n=1200 draft_acc=921/1382 (67%)
+dspark5-d32k	codegen	depth=39914	pp=434	tg=42.7	n=1200 draft_acc=803/1977 (41%)
+dspark5-d100k	codegen	depth=124605	pp=195	tg=31.3	n=1200 draft_acc=857/1710 (50%)
+# 2026-11-21 13:13:16 dspark7 up vram=23308MiB
+dspark7	codegen	depth=46	pp=132	tg=53.0	n=1200 draft_acc=805/2749 (29%)
+dspark7	chat	depth=51	pp=282	tg=42.2	n=1200 draft_acc=704/3462 (20%)
+dspark7	edit	depth=3118	pp=660	tg=61.4	n=1200 draft_acc=875/2265 (39%)
+dspark7-d32k	codegen	depth=39914	pp=433	tg=42.8	n=1200 draft_acc=850/2431 (35%)
+dspark7-d100k	codegen	depth=124605	pp=195	tg=25.9	n=1200 draft_acc=843/2489 (34%)
+# 2026-11-21 13:24:50 maxctx dspark 196608 fail
+# 2026-11-21 13:25:02 maxctx dspark 163840 fail
+# 2026-11-21 13:25:18 maxctx dspark 147456 OK
+# 2026-11-21 13:25:18 DONE
+# 2026-11-21 13:25:44 llama-qwen restored (active)

@@ -1,0 +1,26 @@
+# none vram=19028MiB
+none	codegen	depth=40	pp=254	tg=41.8	n=1200
+none	chat	depth=46	pp=352	tg=41.6	n=1200
+none	edit	depth=2322	pp=1429	tg=40.9	n=1200
+# draft-mtp 2 vram=20034MiB
+draft-mtp 2	codegen	depth=40	pp=190	tg=80.7	n=1200 draft_acc=758/880 (86%)
+draft-mtp 2	chat	depth=46	pp=300	tg=71.8	n=1200 draft_acc=704/988 (71%)
+draft-mtp 2	edit	depth=2322	pp=1285	tg=86.3	n=1200 draft_acc=795/806 (99%)
+# draft-mtp 3 vram=20184MiB
+draft-mtp 3	codegen	depth=40	pp=192	tg=88.6	n=1200 draft_acc=864/1002 (86%)
+draft-mtp 3	chat	depth=46	pp=298	tg=71.7	n=1200 draft_acc=785/1242 (63%)
+draft-mtp 3	edit	depth=2322	pp=1285	tg=94.7	n=1200 draft_acc=890/924 (96%)
+# draft-mtp,ngram-mod 3 vram=20184MiB
+draft-mtp,ngram-mod 3	codegen	depth=40	pp=192	tg=88.8	n=1200 draft_acc=865/1000 (86%)
+draft-mtp,ngram-mod 3	chat	depth=46	pp=299	tg=69.1	n=1200 draft_acc=770/1287 (60%)
+draft-mtp,ngram-mod 3	edit	depth=2322	pp=1272	tg=165.3	n=1200 draft_acc=1059/1348 (79%)
+# maxctx kv=q8_0 ctx=262144 fail
+# maxctx kv=q8_0 ctx=229376 fail
+# maxctx kv=q8_0 ctx=196608 fail
+# maxctx kv=q8_0 ctx=163840 fail
+# maxctx kv=q8_0 ctx=150000 OK vram=23664MiB
+# maxctx kv=q4_0 ctx=262144 fail
+# maxctx kv=q4_0 ctx=229376 OK vram=23490MiB
+depth-mtp-q8	codegen	depth=30702	pp=1214	tg=68.1	n=1200 draft_acc=765/867 (88%)
+depth-mtp-q8	codegen	depth=95896	pp=793	tg=51.0	n=1200 draft_acc=764/868 (88%)
+# DONE

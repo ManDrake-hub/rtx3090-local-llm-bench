@@ -1,0 +1,43 @@
+== ctx=147456 01:35:12 buf200fail=0
+start pid=509049 free=450
+ok cold-90k: prompt=85115 out=48 93s free=350 minfree=350
+ok turn1: prompt=89526 out=45 118s free=344 minfree=340
+ok turn2: prompt=89624 out=57 12s free=344 minfree=340
+ok turn3: prompt=90606 out=44 17s free=344 minfree=340
+ok turn4: prompt=94707 out=38 7s free=344 minfree=340
+ok turn5: prompt=98704 out=39 7s free=344 minfree=340
+ok side: prompt=3028 out=120 6s free=344 minfree=338
+ok back-to-long: prompt=98704 out=39 3s free=344 minfree=338
+ok turn6: prompt=99070 out=62 2s free=344 minfree=338
+ok turn7: prompt=105794 out=39 12s free=344 minfree=338
+ok turn8: prompt=106791 out=48 3s free=344 minfree=338
+ok turn9: prompt=111095 out=58 9s free=344 minfree=338
+ok turn10: prompt=112027 out=39 2s free=344 minfree=338
+ok side: prompt=108 out=120 4s free=344 minfree=338
+ok back-to-long: prompt=112027 out=39 2s free=344 minfree=338
+ok turn11: prompt=112346 out=41 2s free=344 minfree=338
+ok turn12: prompt=112459 out=39 1s free=344 minfree=338
+ok turn13: prompt=116825 out=39 9s free=344 minfree=338
+ok turn14: prompt=117932 out=44 3s free=344 minfree=338
+ok turn15: prompt=118961 out=39 3s free=342 minfree=338
+ok side: prompt=106 out=120 2s free=342 minfree=338
+ok back-to-long: prompt=118961 out=39 149s free=342 minfree=338
+ok turn16: prompt=123480 out=39 120s free=342 minfree=336
+ok turn17: prompt=123757 out=39 1s free=342 minfree=336
+ok turn18: prompt=124066 out=38 2s free=342 minfree=336
+ok turn19: prompt=126374 out=45 6s free=342 minfree=336
+ok turn20: prompt=132599 out=39 13s free=342 minfree=336
+ok side: prompt=2672 out=120 7s free=342 minfree=336
+ok back-to-long: prompt=132599 out=39 2s free=342 minfree=336
+ok turn21: prompt=136128 out=39 8s free=342 minfree=336
+ok turn22: prompt=137317 out=59 4s free=342 minfree=336
+ok turn23: prompt=138195 out=39 3s free=342 minfree=336
+ok vision: prompt=134 out=82 5s free=342 minfree=334
+vision answer: ['Red']
+ok tool: prompt=319 out=48 1s free=342 minfree=334
+tool answer: [{'path': 'main.py'}]
+ok final-long: prompt=138195 out=39 4s free=342 minfree=334
+PASS ctx=147456 max_prompt=138195 minfree=334 pid=509049
+== ctx=147456 rc=0 minfree=334
+CHOSEN 147456
+DONE

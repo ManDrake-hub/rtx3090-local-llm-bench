@@ -1,0 +1,8 @@
+# 2026-11-10 11:40:59 strata launch iq3_xxs
+# 2026-11-10 11:41:11 up; vram=23400 MiB ram=5G
+iq3	codegen	depth=40	pp=80	tg=85.4	n=1200 draft_acc=861/1228 (70%)
+iq3	chat	depth=46	pp=47	tg=89.8	n=1200 draft_acc=709/1182 (60%)
+iq3	edit	depth=2397	pp=358	tg=98.4	n=1200 draft_acc=988/1064 (93%)
+iq3-depth	codegen	depth=30609	pp=1204	tg=92.0	n=1200 draft_acc=862/1158 (74%)
+# 2026-11-10 13:07:51 bfcl flashnext-iq3_xxs-noskip rc=0 Mean: 0.748
+# 2026-11-10 13:07:51 DONE

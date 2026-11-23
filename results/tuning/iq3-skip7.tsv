@@ -1,0 +1,6 @@
+# 2026-11-10 11:35:27 strata launch iq3_xxs
+# 2026-11-10 11:35:41 up; vram=23400 MiB ram=5G
+iq3	codegen	depth=40	pp=74	tg=104.5	n=1200 draft_acc=852/1233 (69%)
+iq3	chat	depth=46	pp=69	tg=94.1	n=1200 draft_acc=709/1217 (58%)
+iq3	edit	depth=2397	pp=419	tg=129.3	n=1200 draft_acc=1014/1066 (95%)
+iq3-depth	codegen	depth=30609	pp=1324	tg=102.9	n=1200 draft_acc=878/1186 (74%)

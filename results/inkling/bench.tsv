@@ -1,0 +1,15 @@
+# 2026-11-21 09:03:10 download + build
+# 2026-11-21 09:03:16 gguf size=17627940768 llama.cpp=40b7a546d
+# 2026-11-21 09:03:55 maxctx 163840 OK vram=23486MiB
+inkling	codegen	depth=46	pp=221	tg=57.5	n=1200
+inkling	chat	depth=51	pp=321	tg=57.4	n=1200
+inkling	edit	depth=3118	pp=728	tg=54.1	n=1200 draft_acc=16/192 (8%)
+inkling-depth	codegen	depth=39914	pp=459	tg=46.2	n=1200 draft_acc=4/128 (3%)
+inkling-depth	codegen	depth=124605	pp=200	tg=33.9	n=1200 draft_acc=4/64 (6%)
+# 2026-11-21 09:14:51 humaneval
+# 2026-11-21 10:09:30 humaneval pass=160/164 refusals=9 length-cut=4
+# 2026-11-21 10:09:31 bfcl
+# 2026-11-21 11:29:23 bfcl rc=0 Mean: 0.789
+# 2026-11-21 11:29:27 bfcl pass new=97 old=102
+# 2026-11-21 11:29:27 DONE
+# 2026-11-21 11:29:53 llama-qwen restored (active)

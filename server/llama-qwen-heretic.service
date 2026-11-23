@@ -1,0 +1,24 @@
+[Unit]
+Description=llama-server Qwen3.8-27B Heretic RVN-Q4_K_M multilingual + DFlash2
+After=network-online.target
+
+[Service]
+Type=simple
+# wait for NVIDIA driver/CUDA device nodes (boot race -> silent CPU fallback)
+ExecStartPre=/bin/sh -c 'for i in $(seq 1 60); do [ -e /dev/nvidia-uvm ] && nvidia-smi -L >/dev/null 2>&1 && sleep 3 && exit 0; sleep 2; done; echo "GPU not ready" >&2; exit 1'
+TimeoutStartSec=180
+ExecStart=/bin/sh -c 'exec %h/llama.cpp-prod/build-fa/bin/llama-server \
+  -m %h/models/Qwen3.8-27B-Heretic-RVN-Q4_K_M-multilingual-mtp.gguf \
+  --alias qwen3.8-27b-heretic \
+  --host 0.0.0.0 --port 8080 \
+  --api-key "$(cat %h/.config/llama/api-key)" \
+  -ngl 99 -fa on -c 172032 -np 1 \
+  -ctk q8_0 -ctv q4_0 \
+  -md %h/models/dflash/Qwen3.8-27B-DFlash2-Q4_K_M.gguf -ngld 99 \
+  --spec-type draft-dflash2,ngram-mod --spec-draft-n-max 7 \
+  --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0 \
+  --mmproj %h/models/Qwen3.8-27B-mmproj-F16.gguf --no-mmproj-offload \
+  --jinja --chat-template-file %h/.config/llama/qwen38-template.jinja --no-webui'
+Restart=on-failure
+RestartSec=10
+

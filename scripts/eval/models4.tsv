@@ -1,0 +1,8 @@
+# name	gguf	parallel	ctx_list(total, split across slots)	extra server args
+qwen38-coder390	/home/user/models/eval/Huihui-Qwen3.8-27B-Coder390-EfficientThink-abliterated.Q5_K_M.gguf	2	131072,98304,65536
+qwen38-official	/home/user/models/Qwen3.8-27B-UD-Q5_K_XL.gguf	2	131072,98304,65536
+flint-q4kxl	/home/user/models/eval/flint-UD-Q4_K_XL.gguf	2	131072,98304,65536	--n-cpu-moe 10
+nanbeige43-33b-iq4xs	/home/user/models/eval/Nanbeige_Nanbeige4.3-33B-IQ4_XS.gguf	1	49152,32768
+nemotron35-lightning-iq4nl	/home/user/models/eval/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-UD-IQ4_NL.gguf	2	131072,98304,65536	
+coldfusion-q4km	/home/user/models/eval/Qwen3.8-27B-TurboFCFusion-735-882-Here-Uncen-NEO-CODER-MAX-Q4_K_M.gguf	2	131072,98304,65536	
+bonsai2-q2_0-stock	/home/user/models/eval/Ternary-Bonsai-2-27B-Q2_0.gguf	2	262144,196608,131072	

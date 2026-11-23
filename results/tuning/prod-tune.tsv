@@ -1,0 +1,20 @@
+# 2026-11-21 13:54:25 maxctx kv=q4_0 ctx=196608 fail
+# 2026-11-21 13:54:37 maxctx kv=q4_0 ctx=180224 fail
+# 2026-11-21 13:54:49 maxctx kv=q4_0 ctx=172032 fail
+# 2026-11-21 13:55:01 maxctx kv=q4_0 ctx=163840 OK vram=23966
+# 2026-11-21 13:55:15 maxctx kv=q8_0 ctx=196608 fail
+# 2026-11-21 13:55:27 maxctx kv=q8_0 ctx=180224 fail
+# 2026-11-21 13:55:39 maxctx kv=q8_0 ctx=172032 fail
+# 2026-11-21 13:55:51 maxctx kv=q8_0 ctx=163840 fail
+# 2026-11-21 13:56:03 maxctx kv=q8_0 ctx=159744 fail
+# 2026-11-21 13:56:15 maxctx kv=q8_0 ctx=147456 fail
+# 2026-11-21 13:56:27 maxctx kv=q8_0 ctx=131072 OK vram=23998
+q4v-163840	codegen	depth=40	pp=141	tg=129.8	n=1200 draft_acc=970/1601 (61%)
+q4v-163840	chat	depth=46	pp=220	tg=88.7	n=1200 draft_acc=861/2359 (36%)
+q4v-163840	edit	depth=2397	pp=1043	tg=132.9	n=1200 draft_acc=1071/1717 (62%)
+q4v-163840-d32k	codegen	depth=30609	pp=1042	tg=124.7	n=1200 draft_acc=1000/1436 (70%)
+q4v-163840-d100k	codegen	depth=95562	pp=713	tg=83.9	n=1200 draft_acc=994/1732 (57%)
+# vision: red
+# 2026-11-21 13:59:46 used kv=q4_0 ctx=163840
+# 2026-11-21 13:59:49 DONE
+# 2026-11-21 13:59:57 llama-qwen restarted (active)

@@ -1,0 +1,11 @@
+# 07:32:07 engine update
+# 07:32:27 launch
+# 07:33:02 up; vram=23424 MiB ram=23G used
+strata-q2	codegen	depth=40	pp=143	tg=151.7	n=1200 draft_acc=853/1189 (72%)
+strata-q2	chat	depth=46	pp=137	tg=128.2	n=1200 draft_acc=675/1117 (60%)
+strata-q2	edit	depth=2397	pp=1463	tg=171.6	n=1200 draft_acc=987/1139 (87%)
+strata-q2-depth	codegen	depth=30609	pp=2678	tg=149.4	n=1200 draft_acc=870/1194 (73%)
+# 07:33:48 humaneval start
+# 08:06:39 humaneval rc=0 07:33:48 humaneval: 0 done, 164 to do 08:06:39 refusals done 
+# 08:06:39 DONE
+# 08:06:41 llama-qwen restored

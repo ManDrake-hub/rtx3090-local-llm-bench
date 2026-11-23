@@ -1,0 +1,18 @@
+# 2026-11-11 20:16:57 download
+# 2026-11-11 20:18:49 size new=17659407264 old=17559178144
+# 2026-11-11 20:18:54 nextn tensors=4
+# 2026-11-11 20:19:00 speed
+# vram=23687MiB
+v31	codegen	depth=40	pp=157	tg=88.2	n=1200 draft_acc=850/1044 (81%)
+v31	chat	depth=46	pp=312	tg=74.6	n=1200 draft_acc=789/1227 (64%)
+v31	edit	depth=2397	pp=1326	tg=162.6	n=1200 draft_acc=1048/1343 (78%)
+v31-depth	codegen	depth=30609	pp=1234	tg=74.4	n=1200 draft_acc=853/1096 (78%)
+# 2026-11-11 20:20:28 humaneval
+# 2026-11-11 21:24:57 humaneval pass=155/164
+# 2026-11-11 21:24:57 bfcl
+# 2026-11-11 22:08:32 bfcl rc=0 Mean: 0.780
+# 2026-11-11 22:08:32 bfcl pass new=96 old=102
+# 2026-11-11 22:08:32 v3.1 not better -> kept old, v3.1 deleted
+# 2026-11-11 22:08:32 DONE
+# 2026-11-11 22:08:51 llama-qwen restored (active)
+# 2026-11-11 22:08:59 ctx probe skipped (v3.1 not adopted)

@@ -1,0 +1,4 @@
+# name	gguf path	llama.cpp build dir (bin)
+bonsai2-q2_0-stock	/home/user/models/eval/Ternary-Bonsai-2-27B-Q2_0.gguf	/home/user/llama.cpp-new/build/bin
+bonsai2-pq2_0-prism	/home/user/models/eval/Ternary-Bonsai-2-27B-PQ2_0.gguf	/home/user/llama.cpp-prism/build/bin
+bonsai2-heretic-pq2_0	/home/user/models/eval/Ternary-Bonsai-2-27B-Uncensored-Heretic-v2-PQ2_0.gguf	/home/user/llama.cpp-prism/build/bin

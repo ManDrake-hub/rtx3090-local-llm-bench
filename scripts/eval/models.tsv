@@ -1,0 +1,7 @@
+# name	hf_repo (or "local")	file
+qwen38-official	local	/home/user/models/Qwen3.8-27B-UD-Q5_K_XL.gguf
+qwen38-hauhau	HauhauCS/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF	Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-Q5_K_P.gguf
+qwen38-huihui	huihui-ai/Huihui-Qwen3.8-27B-abliterated-GGUF	Huihui-Qwen3.8-27B-abliterated-UD-Q5_K_XL.gguf
+qwen38-heretic	0bserverx/Qwen3.8-27B-Heretic-Abliterated-Uncensored-GGUF	RVN-Q5_K_M.gguf
+qwen38-coder390	mradermacher/Huihui-Qwen3.8-27B-Coder390-EfficientThink-abliterated-GGUF	Huihui-Qwen3.8-27B-Coder390-EfficientThink-abliterated.Q5_K_M.gguf
+qwen36-hauhau-current	local	/home/user/models/Qwen3.6-27B-Uncensored-HauhauCS-Aggressive-Q5_K_P.gguf

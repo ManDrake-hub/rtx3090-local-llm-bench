@@ -1,0 +1,21 @@
+# 2026-11-21 08:51:20 download + build
+# 2026-11-21 08:56:15 gguf size=17627940768 llama.cpp=46eb1742d
+# 2026-11-21 08:56:46 maxctx 1048576 fail
+# 2026-11-21 08:56:58 maxctx 786432 fail
+# 2026-11-21 08:57:09 maxctx 524288 fail
+# 2026-11-21 08:57:19 maxctx 393216 fail
+# 2026-11-21 08:57:30 maxctx 262144 fail
+# 2026-11-21 08:57:39 maxctx 196608 fail
+# 2026-11-21 08:57:51 maxctx 159744 fail
+# 2026-11-21 08:58:04 maxctx 131072 fail
+# 2026-11-21 08:58:15 maxctx 65536 fail
+# 2026-11-21 08:58:15 FAIL: non parte nemmeno a 65k
+# --- manual ubatch probe (KV q8_0/q8_0, -fa on) ---
+-c 16384 (ub 512)  -> OK 18826 MiB
+-c 65536 -ub 256   -> OK 21110 MiB
+-c 65536 -ub 128   -> OK 19478 MiB
+-c 131072 -ub 128  -> OK 22150 MiB
+-c 196608 -ub 128  -> fail
+-c 262144 -ub 64   -> fail
+ub128	codegen	depth=24967	pp=547	tg=51.9	n=1200
+ub512	codegen	depth=24967	pp=661	tg=51.4	n=1200

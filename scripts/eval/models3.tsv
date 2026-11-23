@@ -1,0 +1,5 @@
+# name	hf_repo	file	parallel	ctx_list	extra server/bench args
+flint-q4kxl	unsloth/flint-GGUF	flint-UD-Q4_K_XL.gguf	4	65536,49152,32768	--n-cpu-moe 8
+nanbeige43-33b-iq4xs	bartowski/Nanbeige_Nanbeige4.3-33B-GGUF	Nanbeige_Nanbeige4.3-33B-IQ4_XS.gguf	2	32768,24576
+nemotron35-lightning-iq4nl	unsloth/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF	NVIDIA-Nemotron-3.5-Lightning-30B-A3B-UD-IQ4_NL.gguf	4	65536,49152,32768
+saluki-27b-iq2mix	ConwayResearch/Underdog-Saluki-27B-1.0	Underdog-Saluki-27B-1.0-IQ2-mix.gguf	4	65536,49152,32768

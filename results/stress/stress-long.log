@@ -1,0 +1,6 @@
+start pid=509049 free=342
+ok longgen-30000: prompt=25597 out=3000 64s free=342 minfree=334
+ok longgen-90400: prompt=77983 out=3000 135s free=342 minfree=334
+ok longgen-135456: prompt=120233 out=3000 205s free=340 minfree=334
+PASS-LONG ctx=147456 max_prompt=120233 minfree=334 pid=509049
+END
