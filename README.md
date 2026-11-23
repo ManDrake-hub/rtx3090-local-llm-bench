@@ -103,12 +103,6 @@ The llama.cpp Inkling columns use `mtptest.py` with thinking off, so they are no
 On llama.cpp, Inkling needs `-ub 128`: with the default micro-batch the attention-bias compute buffer does not fit even at 65k.
 HyperInkling ran in an isolated container: internal network only, all capabilities dropped, weights mounted read-only.
 
-### 5. Video generation (same GPU, ComfyUI)
-
-Wall times for one 5-second clip: LTX-2.5 distilled int8 at 1280x704 with audio takes about 60 s.
-Wan 2.2 A14B Q5 with the Lightning LoRA at 832x480 takes about 130 s, with no audio.
-MiniMax H3 int8 takes 70-200 s depending on steps and LoRA. Details: `video-generation/results/NOTES.md`.
-
 ## Method
 
 - **HumanEval:** 164 problems, one sample each, thinking on, temperature 0.6. Code runs in
@@ -142,7 +136,6 @@ MiniMax H3 int8 takes 70-200 s depending on steps and LoRA. Details: `video-gene
 | `agentic/tasks.csv` | Every BFCL and Terminal-Bench task outcome per model |
 | `scripts/` | The scripts as they were run (they assume a `~/llm-eval` working directory) |
 | `server/` | Production systemd units and a Qwen chat template patched for Anthropic Messages clients: mid-conversation system messages and `tool_reference` blocks |
-| `video-generation/` | ComfyUI benchmark scripts and results |
 
 Full agent trajectories (about 150 MB unpacked) are attached to the GitHub release as `agentic-trajectories.tar.zst`.
 

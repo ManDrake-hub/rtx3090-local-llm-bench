@@ -22,7 +22,7 @@ log "image $(docker image inspect -f '{{index .RepoDigests 0}} {{.Size}}' $IMG) 
 
 # reference: same streaming bench on the current production server
 for u in llama-qwen llama-qwen-heretic; do systemctl --user is-active -q $u && echo $u > $H/ACTIVE_UNIT; done
-[ -s $H/ACTIVE_UNIT ] || fail "no LLM server active (game/video mode?): not touching the GPU"
+[ -s $H/ACTIVE_UNIT ] || fail "no LLM server active (game mode?): not touching the GPU"
 log "reference on $(cat $H/ACTIVE_UNIT)"
 python3 -I $H/sbench.py 8080 $(cat $H/ACTIVE_UNIT) 0,32000,100000 ~/.config/llama/api-key >> $OUT 2>&1
 
