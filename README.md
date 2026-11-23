@@ -19,7 +19,7 @@ same machine between November 4 and November 23, 2026.
 
 | | |
 |---|---|
-| GPU | RTX 3090 24 GB (PCIe link reported as x4) |
+| GPU | RTX 3090 24 GB, PCIe 4.0 x16 (an x4 link was seen on Nov 4 and later fixed; with the model fully on GPU this mainly affects load times) |
 | CPU / RAM | i9-12900K, 32 GB DDR5-6000 |
 | OS | Ubuntu 24.04 |
 | Inference | llama.cpp (several builds, commits noted in the logs), vLLM via HyperInkling 0.1.2 for Inkling |
