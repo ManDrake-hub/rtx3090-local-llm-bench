@@ -26,8 +26,8 @@ done
 if [ $best -gt 0 ]; then
   sed -i -E "s/-c [0-9]+ -np 1/-c $best -np 1/" "$UNIT"
   log "llama-qwen ctx set to $best"
-  ntfy "v3.1 contesto massimo" "Max ctx v3.1 (KV q8_0 + MTP): $best token (vecchio 150000). llama-qwen impostato a $best.
-Client dsh: aggiorna contextWindow a $best."
+  ntfy "v3.1 max context" "Max ctx v3.1 (KV q8_0 + MTP): $best tokens (old 150000). llama-qwen set to $best.
+dsh client: update contextWindow to $best."
 else
-  ntfy "v3.1 contesto" "Probe contesto fallito, unit invariata (150000)."
+  ntfy "v3.1 context" "Context probe failed, unit unchanged (150000)."
 fi

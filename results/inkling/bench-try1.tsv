@@ -9,7 +9,7 @@
 # 2026-11-21 08:57:51 maxctx 159744 fail
 # 2026-11-21 08:58:04 maxctx 131072 fail
 # 2026-11-21 08:58:15 maxctx 65536 fail
-# 2026-11-21 08:58:15 FAIL: non parte nemmeno a 65k
+# 2026-11-21 08:58:15 FAIL: does not start even at 65k
 # --- manual ubatch probe (KV q8_0/q8_0, -fa on) ---
 -c 16384 (ub 512)  -> OK 18826 MiB
 -c 65536 -ub 256   -> OK 21110 MiB

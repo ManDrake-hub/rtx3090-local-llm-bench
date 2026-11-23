@@ -29,8 +29,8 @@ restore() {
   fi
 }
 trap restore EXIT
-fail() { log "FAIL: $1"; ntfy "Qwen4 test: problema" "$1
-Server Qwen3.8 invariato. Riprovo al prossimo controllo."; exit 1; }
+fail() { log "FAIL: $1"; ntfy "Qwen4 test: problem" "$1
+Qwen3.8 server unchanged. Will retry at the next check."; exit 1; }
 up() { # bin port ctx np extra... -> 0 if healthy (SRV set)
   local bin=$1 port=$2 ctx=$3 np=$4; shift 4
   "$bin" -m "$GG" --host 127.0.0.1 --port $port -ngl 99 -fa on -c $ctx -np $np -ctk q8_0 -ctv q8_0 \
@@ -45,11 +45,11 @@ log "start $REPO $PAT"
 
 # 1) download (resumable)
 mkdir -p $M
-hf download "$REPO" --include "*${PAT}*" --local-dir $M >> $D/dl.log 2>&1 || fail "download fallito ($REPO)"
+hf download "$REPO" --include "*${PAT}*" --local-dir $M >> $D/dl.log 2>&1 || fail "download failed ($REPO)"
 hf download "$REPO" --include "*mmproj*F16*" --local-dir $M >> $D/dl.log 2>&1
 GG=$(find $M -name "*${PAT}*.gguf" ! -iname '*mmproj*' | sort | head -1)
 MMPROJ=$(find $M -iname '*mmproj*F16*.gguf' | head -1)
-[ -s "$GG" ] || fail "file GGUF non trovato dopo download"
+[ -s "$GG" ] || fail "GGUF file not found after download"
 log "gguf=$GG size=$(du -cb $(find $M -name "*${PAT}*.gguf" ! -iname '*mmproj*') | tail -1 | cut -f1) mmproj=${MMPROJ:-none}"
 
 # 2) MTP heads?
@@ -66,12 +66,12 @@ if up $BIN 8093 16384 1 $SPEC; then down; else
   log "current llama.cpp can't load: $(grep -iE 'error|unknown|fail' $D/server.log | tail -2 | tr '\n' ' ')"
   { [ -d $LC4 ] || git clone -q https://github.com/ggml-org/llama.cpp $LC4; } && git -C $LC4 pull -q \
     && cmake -S $LC4 -B $LC4/build -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=86 -DGGML_NATIVE=ON > $D/build.log 2>&1 \
-    && cmake --build $LC4/build --target llama-server -j 20 >> $D/build.log 2>&1 || fail "build llama.cpp nuovo fallita"
+    && cmake --build $LC4/build --target llama-server -j 20 >> $D/build.log 2>&1 || fail "new llama.cpp build failed"
   BIN=$LC4/build/bin/llama-server
   log "llama.cpp new build $(git -C $LC4 log -1 --format=%h)"
   if ! up $BIN 8093 16384 1 $SPEC; then
     SPEC="--spec-type ngram-mod --spec-draft-n-max 3"   # maybe MTP for new arch unsupported
-    up $BIN 8093 16384 1 $SPEC || fail "llama.cpp non supporta ancora Qwen4: $(grep -iE 'error|unknown' $D/server.log | tail -1)"
+    up $BIN 8093 16384 1 $SPEC || fail "llama.cpp does not support Qwen4 yet: $(grep -iE 'error|unknown' $D/server.log | tail -1)"
     log "MTP not usable, spec=$SPEC"
   fi
   down
@@ -82,9 +82,9 @@ fi
     he=$(wc -l < $R/$NAME/humaneval.jsonl 2>/dev/null || echo 0)
     hp=$(grep -c '"pass": true' $R/$NAME/humaneval.jsonl 2>/dev/null || echo 0)
     bn=$(ls $A/jobs/bfcl/$NAME/*/result.json 2>/dev/null | wc -l)
-    ntfy "Test Qwen4 - $(date +%H:%M)" "Fase: $(tail -1 $OUT | cut -c23-)
+    ntfy "Test Qwen4 - $(date +%H:%M)" "Phase: $(tail -1 $OUT | cut -c23-)
 HumanEval Qwen4: $hp/$he (Qwen3.8: 159/164)
-BFCL Qwen4: $bn/123 task (Qwen3.8: 82.9%)"
+BFCL Qwen4: $bn/123 tasks (Qwen3.8: 82.9%)"
   done ) & STAT=$!
 
 # 4) max ctx (startup = KV allocated)
@@ -93,15 +93,15 @@ for ctx in 262144 229376 196608 180224 172032 163840 159744 155648 150000 143360
   if up $BIN 8093 $ctx 1 $SPEC; then V=$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits); down
     log "maxctx $ctx OK vram=${V}MiB"; BEST=$ctx; break; fi
 done
-[ $BEST -gt 0 ] || fail "non parte nemmeno a 65k ctx"
+[ $BEST -gt 0 ] || fail "does not start even at 65k ctx"
 
 # 5) speed
-up $BIN 8093 $BEST 1 $SPEC || fail "server non parte a ctx $BEST"
+up $BIN 8093 $BEST 1 $SPEC || fail "server does not start at ctx $BEST"
 python3 -I ~/llm-eval/mtptest.py 8093 qwen4 >> $OUT 2>&1
 python3 -I ~/llm-eval/mtptest.py 8093 qwen4-depth 32000 >> $OUT 2>&1
 down
 TG=$(grep -P '^qwen4\tcodegen' $OUT | tail -1 | grep -oP 'tg=\K[0-9.]+')
-ntfy "Qwen4 velocita + contesto" "Contesto max: $BEST (Qwen3.8: 159744)
+ntfy "Qwen4 speed + context" "Max context: $BEST (Qwen3.8: 159744)
 $(grep -P '^qwen4' $OUT | cut -f2,5 | tr '\t' ' ')
 (Qwen3.8: codegen 88.8, chat 69.1, edit 165.3, 31k 68)"
 
@@ -117,7 +117,7 @@ ntfy "Qwen4 HumanEval" "Qwen4: $HE/164 (Qwen3.8: 159/164)"
 # 7) BFCL
 log "bfcl"
 ok=0; for c in 131072 98304 65536; do up $BIN 8091 $c 2 $SPEC && { ok=1; SLOT=$((c/2)); break; }; done
-[ $ok = 1 ] || fail "server BFCL non parte"
+[ $ok = 1 ] || fail "BFCL server does not start"
 python3 -I $A/proxy.py 8092 8091 < /dev/null & PRX=$!; sleep 1
 mkdir -p $A/jobs/bfcl
 ( while sleep 60; do find $A/jobs -type f -size +1G \( -name '*.pane' -o -name '*.cast' -o -name '*.txt' \) -exec truncate -s 0 {} \; ; done ) & WD=$!
@@ -148,8 +148,8 @@ touch $D/DONE
 
 # 8) decide
 SUMMARY="BFCL: Qwen4 $BN/123 vs Qwen3.8 $BO/123
-HumanEval: Qwen4 $HE vs $HO | rifiuti Qwen4 $RF/12
-Velocita codegen: Qwen4 ${TG:-?} vs 88.8 | ctx max $BEST vs 159744"
+HumanEval: Qwen4 $HE vs $HO | Qwen4 refusals $RF/12
+Codegen speed: Qwen4 ${TG:-?} vs 88.8 | ctx max $BEST vs 159744"
 if [ "$BN" -ge $((BO + 2)) ] && [ "$HE" -ge $((HO - 1)) ]; then
   cp "$UNIT" "$UNIT.bak-preqwen4"
   PCTX=$BEST; [ $PCTX -gt 262144 ] && PCTX=262144
@@ -163,11 +163,11 @@ if [ "$BN" -ge $((BO + 2)) ] && [ "$HE" -ge $((HO - 1)) ]; then
   if [ -n "$MMPROJ" ]; then sed -i "s#--mmproj [^ ]*#--mmproj $MMPROJ#" "$UNIT"
   else sed -i 's#--mmproj [^ ]* --no-mmproj-offload##' "$UNIT"; fi
   log "WINNER Qwen4 -> llama-qwen switched (backup $UNIT.bak-preqwen4)"
-  ntfy "Qwen4 VINCE - server aggiornato" "$SUMMARY
-llama-qwen ora usa Qwen4 (ctx $PCTX). Alias modello invariato 'qwen3.8-27b'. Client dsh: contextWindow $PCTX. Rollback: cp $UNIT.bak-preqwen4 $UNIT."
+  ntfy "Qwen4 WINS - server updated" "$SUMMARY
+llama-qwen now uses Qwen4 (ctx $PCTX). Model alias unchanged 'qwen3.8-27b'. dsh client: contextWindow $PCTX. Rollback: cp $UNIT.bak-preqwen4 $UNIT."
 else
   log "Qwen4 not better -> kept Qwen3.8 (Qwen4 files kept in $M)"
-  ntfy "Qwen4 non migliora - tengo Qwen3.8" "$SUMMARY
-Server invariato. File Qwen4 tenuti in ~/models/qwen4 (cancellabili)."
+  ntfy "Qwen4 no better - keeping Qwen3.8" "$SUMMARY
+Server unchanged. Qwen4 files kept in ~/models/qwen4 (safe to delete)."
 fi
 log "DONE"

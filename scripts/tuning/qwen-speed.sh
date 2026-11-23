@@ -63,6 +63,6 @@ for ctx in 159744 147456 139264 131072; do
   if up $NEW $ctx $DF --spec-type draft-dflash2 --spec-draft-n-max 7; then down; log "maxctx dflash $ctx OK"; break; fi
   log "maxctx dflash $ctx fail"
 done
-ntfy "Qwen velocita: sweep finito" "$(grep -vP '^#' $OUT | awk -F'\t' '{print $1, $2, $5}')
+ntfy "Qwen speed: sweep finished" "$(grep -vP '^#' $OUT | awk -F'\t' '{print $1, $2, $5}')
 $(grep -E 'maxctx.*OK|FAIL' $OUT | cut -c23-)"
 log DONE

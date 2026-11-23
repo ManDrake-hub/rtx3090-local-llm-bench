@@ -34,5 +34,5 @@ EOF
 )
 if [ -z "$FOUND" ]; then log "not found"; exit 0; fi
 log "found $FOUND"
-[ -e $D/FOUND_NOTIFIED ] || { ntfy "Qwen4-27B uscito!" "Trovato su HF: $FOUND. Parte download + benchmark vs Qwen3.8 (~3h, server :8080 giu durante test)." tada; touch $D/FOUND_NOTIFIED; }
+[ -e $D/FOUND_NOTIFIED ] || { ntfy "Qwen4-27B is out!" "Found on HF: $FOUND. Starting download + benchmark vs Qwen3.8 (~3h, server :8080 down during tests)." tada; touch $D/FOUND_NOTIFIED; }
 systemd-run --user --unit=qwen4-bench --collect bash $D/bench.sh $FOUND

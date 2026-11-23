@@ -30,13 +30,13 @@ trap restore EXIT
     he=$(wc -l < $R/$NAME/humaneval.jsonl 2>/dev/null || echo 0)
     hp=$(grep -c '"pass": true' $R/$NAME/humaneval.jsonl 2>/dev/null || echo 0)
     bn=$(ls $A/jobs/bfcl/$NAME/*/result.json 2>/dev/null | wc -l)
-    ntfy "Test v3.1 - $(date +%H:%M)" "Fase: $(tail -1 $OUT | cut -c23-)
-HumanEval v3.1: $hp/$he (vecchio 159/164)
-BFCL v3.1: $bn/123 task fatti (vecchio 82.9%)"
+    ntfy "Test v3.1 - $(date +%H:%M)" "Phase: $(tail -1 $OUT | cut -c23-)
+HumanEval v3.1: $hp/$he (old 159/164)
+BFCL v3.1: $bn/123 tasks done (old 82.9%)"
   done ) & STAT=$!
 
 : > "$OUT"
-ntfy "Test v3.1 avviato" "Download Qwen3.8 Q4 Dynamic v3.1, poi velocita, HumanEval, BFCL (~4h). Server :8080 spento durante test."
+ntfy "v3.1 test started" "Downloading Qwen3.8 Q4 Dynamic v3.1, then speed, HumanEval, BFCL (~4h). Server :8080 off during tests."
 
 # 1) download
 log "download"
@@ -44,9 +44,9 @@ D=~/models/v31dl; mkdir -p $D
 hf download unsloth/Qwen3.8-27B-GGUF Qwen3.8-27B-UD-Q4_K_XL.gguf --local-dir $D > ~/models/dl-v31.log 2>&1 \
   && mv $D/Qwen3.8-27B-UD-Q4_K_XL.gguf "$NEW"
 rm -rf $D
-if [ ! -s "$NEW" ]; then log "download FAILED"; ntfy "Test v3.1 FALLITO" "Download fallito, server invariato."; exit 1; fi
+if [ ! -s "$NEW" ]; then log "download FAILED"; ntfy "v3.1 test FAILED" "Download failed, server unchanged."; exit 1; fi
 if cmp -s <(head -c 50000000 "$NEW") <(head -c 50000000 "$OLD") && [ $(stat -c%s "$NEW") = $(stat -c%s "$OLD") ]; then
-  log "same file as old, abort"; rm -f "$NEW"; ntfy "Test v3.1" "File identico al vecchio, niente da fare."; exit 0; fi
+  log "same file as old, abort"; rm -f "$NEW"; ntfy "Test v3.1" "File identical to the old one, nothing to do."; exit 0; fi
 log "size new=$(stat -c%s "$NEW") old=$(stat -c%s "$OLD")"
 
 # 2) MTP heads present?
@@ -55,7 +55,7 @@ import sys; from gguf import GGUFReader
 r=GGUFReader(sys.argv[1]); print(sum('nextn' in t.name for t in r.tensors))" "$NEW" 2>&1 | tail -1)
 log "nextn tensors=$NEXTN"
 if ! [ "$NEXTN" -gt 0 ] 2>/dev/null; then
-  ntfy "Test v3.1 STOP" "File v3.1 senza teste MTP (nextn=$NEXTN): perderebbe meta velocita. Tengo il vecchio, v3.1 cancellato."
+  ntfy "Test v3.1 STOP" "v3.1 file has no MTP heads (nextn=$NEXTN): would lose half the speed. Keeping the old one, v3.1 deleted."
   rm -f "$NEW"; exit 0; fi
 
 systemctl --user stop llama-qwen; sleep 5
@@ -71,12 +71,12 @@ if [ $ok = 1 ]; then
   python3 -I ~/llm-eval/mtptest.py 8093 v31-depth 32000 >> $OUT 2>&1
 else
   log "server FAILED at 150k: $(grep -iE 'error|fail' $R/v31-server.log | tail -2)"
-  ntfy "Test v3.1 FALLITO" "llama-server non parte col file v3.1 a 150k ctx. Tengo il vecchio."; rm -f "$NEW"; exit 1
+  ntfy "v3.1 test FAILED" "llama-server does not start with the v3.1 file at 150k ctx. Keeping the old one."; rm -f "$NEW"; exit 1
 fi
 kill $SRV; wait $SRV 2>/dev/null; SRV=; sleep 3
 TG=$(grep -P '^v31\tcodegen' $OUT | grep -oP 'tg=\K[0-9.]+')
-ntfy "Test v3.1 velocita" "$(grep -P '^v31' $OUT | cut -f2,5 | tr '\t' ' ')
-(vecchio: codegen 88.8, chat 69.1, edit 165.3, 31k 68)"
+ntfy "v3.1 test speed" "$(grep -P '^v31' $OUT | cut -f2,5 | tr '\t' ' ')
+(old: codegen 88.8, chat 69.1, edit 165.3, 31k 68)"
 
 # 4) HumanEval + refusals (same as old run)
 log "humaneval"
@@ -84,7 +84,7 @@ EVAL_PARALLEL=2 EVAL_CTX=131072,98304 EVAL_EXTRA_ARGS="--spec-type draft-mtp,ngr
   python3 -I ~/llm-eval/eval.py $NAME "$NEW" > $R/$NAME.log 2>&1
 HE=$(grep -c '"pass": true' $R/$NAME/humaneval.jsonl 2>/dev/null || echo 0)
 log "humaneval pass=$HE/164"
-ntfy "Test v3.1 HumanEval" "v3.1: $HE/164 (vecchio 159/164)"
+ntfy "Test v3.1 HumanEval" "v3.1: $HE/164 (old 159/164)"
 
 # 5) BFCL (same as old run)
 log "bfcl"
@@ -119,18 +119,18 @@ log "bfcl pass new=$BN old=$BO"
 HO=$(grep -c '"pass": true' $R/qwen38-q4-mtp/humaneval.jsonl)
 win=0
 [ "$BN" -ge $((BO + 2)) ] && [ "$HE" -ge $((HO - 1)) ] && awk "BEGIN{exit !(${TG:-0} >= 0.9*88.8)}" && win=1
-SUMMARY="BFCL: v3.1 $BN/123 vs vecchio $BO/123
+SUMMARY="BFCL: v3.1 $BN/123 vs old $BO/123
 HumanEval: v3.1 $HE vs $HO
-Velocita codegen: v3.1 ${TG:-?} vs 88.8"
+Codegen speed: v3.1 ${TG:-?} vs 88.8"
 if [ $win = 1 ]; then
   sed -i "s#Qwen3.8-27B-UD-Q4_K_XL.gguf#Qwen3.8-27B-UD-Q4_K_XL-v31.gguf#" "$UNIT"
   log "WINNER v3.1 -> llama-qwen switched (old file kept)"
-  ntfy "v3.1 VINCE - server aggiornato" "$SUMMARY
-llama-qwen ora usa v3.1. Vecchio file tenuto come backup."
+  ntfy "v3.1 WINS - server updated" "$SUMMARY
+llama-qwen now uses v3.1. Old file kept as backup."
 else
   rm -f "$NEW"
   log "v3.1 not better -> kept old, v3.1 deleted"
-  ntfy "v3.1 non migliora - tengo il vecchio" "$SUMMARY
-File v3.1 cancellato, server invariato."
+  ntfy "v3.1 no better - keeping the old one" "$SUMMARY
+v3.1 file deleted, server unchanged."
 fi
 log "DONE"

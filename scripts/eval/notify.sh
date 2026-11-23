@@ -18,7 +18,7 @@ while true; do
   fi
   if grep -q 'llama-qwen restored' $R/iq3.tsv 2>/dev/null; then
     s=$(cd ~/llm-eval && python3 -I agentic/summarize4.py 2>/dev/null | grep -E 'flashnext|q4-mtp|official|bonsai' | awk -F'|' '{print $2": BFCL "$3}')
-    send "FINITO. $s" "Benchmark finiti"; exit 0
+    send "DONE. $s" "Benchmarks finished"; exit 0
   fi
   t=$((t+1)); sleep 10
 done
